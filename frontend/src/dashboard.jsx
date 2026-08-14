@@ -265,7 +265,7 @@ export default function Dashboard() {
                   <tr key={task.id}>
                     <td>{task.title}</td>
 
-                    <td>{task.assigned_user.username}</td>
+                    <td>{typeof task.assigned_user === "number" ? users.find((u) => u.id === task.assigned_user)?.username : task.assigned_user?.username}</td>
 
                     <td>
                       <span

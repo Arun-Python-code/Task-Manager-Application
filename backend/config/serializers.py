@@ -7,20 +7,20 @@ class UserSerializers(serializers.ModelSerializer):
         model = User
         fields = ['username', 'email', 'password']
 
-class taskserializers(serializers.ModelSerializer):
-    assigned_user = UserSerializers(read_only=True)
-
-    class Meta:
-        model = task
-        fields = "__all__"
 
 class GetUsernameSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "username"]
 
+class taskserializers(serializers.ModelSerializer):
+    assigned_user = GetUsernameSerializer(read_only=True)
+
+    class Meta:
+        model = task
+        fields = "__all__"
+
 class TaskcreateSerializers(serializers.ModelSerializer):
-    assigned_user = UserSerializers(read_only = True)
     class Meta:
         model = task
         fields = "__all__"

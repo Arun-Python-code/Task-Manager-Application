@@ -41,11 +41,11 @@ def get_users(request):
 
 @api_view(["POST"])
 def create_task(request):
-    data = TaskcreateSerializers(data = request.data)
-    if data.is_valid():
-        data.save()
-        return Response({"data": data}, status=status.HTTP_201_CREATED)
-    return Response(data.errors, status=status.HTTP_400_BAD_REQUEST)
+    serial = TaskcreateSerializers(data = request.data)
+    if serial.is_valid():
+        serial.save()
+        return Response({"data": serial.data}, status=status.HTTP_201_CREATED)
+    return Response(serial.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["DELETE"])
 def delete_task(request, id):
